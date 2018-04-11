@@ -1,22 +1,18 @@
 #
 
-package ManulC::Plugin::Empty;
+package ManulCPluginBuild;
 
-use ManulC::Class -plugin;
+BEGIN {
+    require File::Spec;
+    if ( defined $ENV{MANULC_SRC} ) {
+        unshift @INC, (
+            File::Spec->catdir( $ENV{MANULC_SRC}, "lib" ),
+            File::Spec->catdir( $ENV{MANULC_SRC} , qw<contrib ManulCBuild lib>),
+        );
+    }
+}
 
-our $VERSION = 'v0.001.001';
-
-plugin
-  demands  => [qw<FEATURE1 FEATURE2>],
-  abstract => "Some abstract",
-  depends  => [qw<OtherPlugin>],
-  after    => [qw<NonRequiredPlugin1 NonRequiredPlugin2>],
-  before   => q<NonRequiredPlugin3 NonRequiredPlugin4>,
-  class    => {
-    'ManulC::Response' => 'ManulC::Plugin::Empty::Response',
-    'ManulC::UI'       => 'UI',                              # 'ManulC::Plugin::Empty::' will be prepended automatically
-  },
-  ;
+use base qw<ManulC::Contrib::Build>;
 
 1;
 
