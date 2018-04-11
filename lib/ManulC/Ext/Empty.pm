@@ -1,20 +1,20 @@
 #
 
-package ManulC::Plugin::Empty;
+package ManulC::Ext::Empty;
 
-use ManulC::Class -plugin;
+use ManulC::Class -extension;
 
 our $VERSION = 'v0.001.001';
 
-plugin
+extension
   demands  => [qw<FEATURE1 FEATURE2>],
   abstract => "Some abstract",
-  depends  => [qw<OtherPlugin>],
-  after    => [qw<NonRequiredPlugin1 NonRequiredPlugin2>],
-  before   => q<NonRequiredPlugin3 NonRequiredPlugin4>,
+  depends  => [qw<OtherExt>],
+  after    => [qw<NonRequiredExt1 NonRequiredExt2>],
+  before   => q<NonRequiredExt3 NonRequiredExt4>,
   class    => {
-    'ManulC::Response' => 'ManulC::Plugin::Empty::Response',
-    'ManulC::UI'       => 'UI',                              # 'ManulC::Plugin::Empty::' will be prepended automatically
+    'ManulC::Response' => 'ManulC::Ext::Empty::Response',
+    'ManulC::UI'       => 'UI',                              # 'ManulC::Ext::Empty::' will be prepended automatically
   },
   ;
 

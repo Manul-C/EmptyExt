@@ -1,6 +1,6 @@
 #
 
-package ManulCPluginBuild;
+package ManulCExtBuild;
 
 BEGIN {
     require File::Spec;
